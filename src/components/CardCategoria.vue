@@ -1,32 +1,30 @@
-<script lang="ts">
-import type ICategoria from "@/interfaces/ICategoria";
-import type { PropType } from "vue";
-import Tag from "./Tag.vue";
-
-export default {
-  props: { categoria: { type: Object as PropType<ICategoria>, required: true } },
-  components: { Tag },
-};
-</script>
-
 <template>
   <article class="categoria">
     <header class="categoria__cabecalho">
-      <img
-        :src="`/imagens/icones/categorias_ingredientes/${categoria.imagem}`"
-        :alt="`${categoria.nome}`"
-        class="categoria__imagem"
-      />
+      <img :src="`/imagens/icones/categorias_ingredientes/${categoria.imagem}`" :alt="`${categoria.nome}`"
+        class="categoria__imagem" />
       <h2 class="paragrafo-lg categoria__nome">{{ categoria.nome }}</h2>
     </header>
 
     <ul class="categoria__ingredientes">
       <li v-for="ingrediente in categoria.ingredientes" :key="ingrediente">
-        <Tag :texto="ingrediente" />
+        <IngredienteSelecionavel :ingrediente="ingrediente" />
       </li>
     </ul>
   </article>
 </template>
+
+<script lang="ts">
+import type ICategoria from "@/interfaces/ICategoria";
+import type { PropType } from "vue";
+import Tag from "./Tag.vue";
+import IngredienteSelecionavel from "./IngredienteSelecionavel.vue";
+
+export default {
+  props: { categoria: { type: Object as PropType<ICategoria>, required: true } },
+  components: { Tag, IngredienteSelecionavel },
+};
+</script>
 
 <style scoped>
 .categoria {

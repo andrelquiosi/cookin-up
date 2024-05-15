@@ -1,3 +1,22 @@
+<template>
+  <section class="selecionar-ingredientes">
+    <h1 class="cabecalho titulo-ingredientes">Ingredientes</h1>
+    <p class="paragrafo-lg instrucoes">
+      Selecione abaixo os ingredientes que você quer usa nesta receita:
+    </p>
+
+    <ul class="categorias">
+      <li v-for="categoria in categorias" :key="categoria.nome">
+        <CardCategoria :categoria="categoria" />
+      </li>
+    </ul>
+
+    <p class="paragrafo dica">
+      *Atenção: consideramos que você tenha em casa sal, pimenta e água.
+    </p>
+  </section>
+</template>
+
 <script lang="ts">
 import { obterCategorias } from "@/http/index";
 import type ICategoria from "@/interfaces/ICategoria";
@@ -17,25 +36,6 @@ export default {
   },
 };
 </script>
-
-<template>
-  <section class="selecionar-ingredientes">
-    <h1 class="cabecalho titulo-ingredientes">Ingredientes</h1>
-    <p class="paragrafo-lg instrucoes">
-      Selecione abaixo os ingredientes que você quer usa nesta receita:
-    </p>
-
-    <ul class="categorias">
-      <li v-for="categoria in categorias" :key="categoria.nome">
-        <CardCategoria :categoria="categoria" />
-      </li>
-    </ul>
-
-    <p class="paragrafo dica">
-      *Atenção: consideramos que você tenha em casa sal, pimenta e água.
-    </p>
-  </section>
-</template>
 
 <style scoped>
 .selecionar-ingredientes {

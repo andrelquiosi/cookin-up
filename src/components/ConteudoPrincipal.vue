@@ -1,10 +1,17 @@
+<template>
+    <main class="conteudo-principal">
+        <SuaLista :ingredientes="ingredientes" />
+        <SelecionarIngredientes />
+    </main>
+</template>
+
 <script lang="ts">
 import SelecionarIngredientes from './SelecionarIngredientes.vue';
 import SuaLista from './SuaLista.vue';
 
 
 export default {
-    components: { SelecionarIngredientes, SuaLista},
+    components: { SelecionarIngredientes, SuaLista },
 
     data() {
         return {
@@ -14,13 +21,6 @@ export default {
 }
 
 </script>
-
-<template>
-    <main class="conteudo-principal">
-        <SuaLista :ingredientes="ingredientes"/>
-        <SelecionarIngredientes />
-    </main>
-</template>
 
 <style scoped>
 .conteudo-principal {
