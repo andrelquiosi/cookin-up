@@ -1,11 +1,16 @@
 <template>
     <main class="conteudo-principal">
         <SuaLista :ingredientes="ingredientes" />
-        <SelecionarIngredientes v-if="conteudo === 'SelecionarIngredientes'"
-            @adicionar-ingrediente="adicionarIngrediente" @remover-ingrediente="removerIngrediente" 
-            @buscar-receitas="pagina('MostrarReceitas')"/>
 
-        <MostrarReceitas v-else-if="conteudo === 'MostrarReceitas'" />
+        <keep-alive include="SelecionarIngredientes">
+
+            <SelecionarIngredientes v-if="conteudo === 'SelecionarIngredientes'"
+                @adicionar-ingrediente="adicionarIngrediente" @remover-ingrediente="removerIngrediente"
+                @buscar-receitas="pagina('MostrarReceitas')" />
+
+            <MostrarReceitas v-else-if="conteudo === 'MostrarReceitas'"
+                @editar-receitas="pagina('SelecionarIngredientes')" />
+        </keep-alive>
 
     </main>
 </template>
@@ -33,7 +38,7 @@ export default {
         removerIngrediente(ingrediente: string) {
             this.ingredientes = this.ingredientes.filter(iLista => ingrediente !== iLista);
         },
-        pagina(pagina: Pagina){
+        pagina(pagina: Pagina) {
             this.conteudo = pagina;
         }
 
