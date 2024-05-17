@@ -17,7 +17,7 @@
     <p class="paragrafo dica">
       *Atenção: consideramos que você tenha em casa sal, pimenta e água.
     </p>
-    <BotaoPrincipal texto="Buscar Receitas!"/>
+    <BotaoPrincipal texto="Buscar Receitas!" @click="$emit('BuscarReceitas')"/>
   </section>
 </template>
 
@@ -41,7 +41,7 @@ export default {
     CardCategoria, BotaoPrincipal
 
   },
-  emits: ["adicionarIngrediente","removerIngrediente"],
+  emits: ["adicionarIngrediente","removerIngrediente","BuscarReceitas"],
 
 };
 </script>
