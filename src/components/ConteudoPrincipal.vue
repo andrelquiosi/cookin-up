@@ -9,6 +9,7 @@
                 @buscar-receitas="pagina('MostrarReceitas')" />
 
             <MostrarReceitas v-else-if="conteudo === 'MostrarReceitas'"
+                :ingredientes="ingredientes"
                 @editar-receitas="pagina('SelecionarIngredientes')" />
         </keep-alive>
 

@@ -21,7 +21,8 @@
         Ops, não encontramos resultados para sua combinação. Vamos tentar de novo?
       </p>
 
-      <img src="../assets/images/sem-receitas.png" alt="Desenho de um ovo quebrado. A gema tem um rosto com uma expressão triste.">
+      <img src="../assets/images/sem-receitas.png"
+        alt="Desenho de um ovo quebrado. A gema tem um rosto com uma expressão triste.">
     </div>
 
     <BotaoPrincipal texto="Editar Lista" @click="$emit('editarReceitas')" />
@@ -35,8 +36,11 @@ import { obterReceitas } from '@/http';
 import type IReceita from '@/interfaces/IReceita';
 import BotaoPrincipal from './BotaoPrincipal.vue';
 import CardReceita from './CardReceita.vue';
+import type { PropType } from 'vue';
+import { itensLista1EstaoEmLista2 } from '@/operations/Listas';
 
 export default {
+  props: { ingredientes: { type: Array as PropType<String[]>, required: true } },
   data() {
     return {
       receitasEncontradas: [] as IReceita[]
@@ -45,7 +49,12 @@ export default {
   async created() {
     const receitas = await obterReceitas();
 
-    this.receitasEncontradas = receitas.slice(0, 8);
+    this.receitasEncontradas = receitas.filter((receita) => {
+      const possoFazerReceita = itensLista1EstaoEmLista2(receita.ingredientes, this.ingredientes);
+      return possoFazerReceita;
+
+    })
+
 
   },
   components: {
